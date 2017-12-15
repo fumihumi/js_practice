@@ -17,7 +17,41 @@ var utils = {
 }
 
 var App = function() {
+  this.tweets = []
+  this.bindEvents();
+  this.tweetTemplate = Handlebars.compile($('#js-tweet-template').html());
 }
+
+App.prototype.tweet = function (e) {
+  if(e.keyCode === 13) {
+    e.preventDefault();
+    var $tweetBody = $('#js-tweet-body');
+    var body = $tweetBody.val();//value を取得
+    if (body.length != 0) {
+      var tweet = new Tweet(body)
+      this.tweets.unshift(tweet)
+      this.render();
+      $tweetBody.val('');
+
+    }
+  }
+};
+
+App.prototype.bindEvents = function(){
+  $('#js-tweet-body').on('keydown',this.tweet.bind(this));
+}
+
+App.prototype.render = function(){
+  $('#js-tweets').html(this.tweetTemplate(this.tweets));
+}
+
+var Tweet = function(body){
+    this.uuid = utils.uuid();
+    this.body = body;
+    this.isFavorited = false;
+}
+
+
 
 
 // applicationの起動
