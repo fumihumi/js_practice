@@ -1,0 +1,13 @@
+{
+  "name": "vue",
+  "title": "Vue.js",
+  "version": "1.0.26",
+  "description": "Composable MVVM model",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hughsk/envify.git"
+  },
+  "readme": "Error : no read me data found "
+}
