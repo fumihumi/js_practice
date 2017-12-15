@@ -4,6 +4,30 @@
     <meta charset="utf-8">
     <title>A Gentle introduction</title>
     <script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+    <script type="text/javascript">
+
+      var auther = function(){
+        console.log('auther');
+      }
+      var books = function(){
+        console.log('books');
+      }
+      var viewBook = function(){
+        console.log("viewBook: bookId is populated: " + bookId);
+      }
+
+      var routes = {
+        'auther': auther,
+        'books' : [books, function(){
+          console.log('An inline route handler');
+        }],
+        'books/view/:book_id': viewBook
+      }
+
+      var router = Router(routes);
+      router.init();
+
+    </script>
   </head>
   <body>
     <ul>
