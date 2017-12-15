@@ -7,6 +7,36 @@
     <script src="handlebars.js"></script>
   </head>
   <body>
+    <div id="context">
+      <div>
+        <!-- define template -->
+        <script id="entry-template" type="text/x-handlebars-template">
+          <div class='entry'>
+            <h1>
+              {{title}}
+            </h1>
+          </div>
+          <div class='body'>
+            {{body}}<br>
+            {{body_escape}}<br>
+            {{{body_escape}}}
+<!-- {{{３つで囲むとhtmlとして認識する}}} -->
+          </div>
+        </script>
 
+        <!-- controll template -->
+        <script type="text/javascript">
+          var source = $('#entry-template').html();
+          var template = Handlebars.compile(source);
+          var context = {
+            title:'my New Post',
+            body: 'This is my first post!',
+            body_escape: "<strong> escape </strong>"
+          }
+          var html = template(context);
+          $('#context').html(html);
+        </script>
+      </div>
+    </div>
   </body>
 </html>
